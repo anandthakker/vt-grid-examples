@@ -4,12 +4,20 @@ var cheapRuler = require('cheap-ruler')
 module.exports = {
   aggregations: {
     osm: {
-      roads_km: function (memo, feature, _, tile) {
+      road_density: function (memo, feature, _, tile) {
         if (!feature.properties.highway) { return memo }
 
         memo = memo || 0
-        ruler = getRuler(tile)
+        var ruler = getRuler(tile)
         return memo + totalLineDistance(ruler, feature.geometry)
+      }
+    }
+  },
+  postAggregations: {
+    osm: {
+      road_density: function (cell, tile) {
+        var ruler = getRuler(tile)
+        return cell.properties.roads_km / ruler.area(cell.geometry.coordinates)
       }
     }
   }
