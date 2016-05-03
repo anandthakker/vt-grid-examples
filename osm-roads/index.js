@@ -11,12 +11,13 @@ var options = [{
   includeBaseData: false,
   basezoom: 12,
   minzoom: 11,
-  gridsize: 256,
-  aggregations: path.join(__dirname, 'base.js')
+  gridsize: 4096,
+  aggregations: path.join(__dirname, 'base.js'),
+  postAggregations: path.join(__dirname, 'base.js')
 }, {
   basezoom: 11,
   minzoom: 1,
-  gridsize: 256,
+  gridsize: 4096,
   aggregations: { osm: { road_density: 'areaWeightedMean' } }
 }]
 

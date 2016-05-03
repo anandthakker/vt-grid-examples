@@ -4,7 +4,7 @@ var cheapRuler = require('cheap-ruler')
 module.exports = {
   aggregations: {
     osm: {
-      road_density: function (memo, feature, _, tile) {
+      roads_km: function (memo, feature, _, tile) {
         if (!feature.properties.highway) { return memo }
 
         memo = memo || 0
