@@ -1,10 +1,10 @@
 var path = require('path')
 var vtGrid = require('vt-grid')
 
-var output = process.argv[2]
+var output = process.argv[3]
 
-var bbox = (process.argv.length > 3)
-  ? process.argv.slice(3).map(Number)
+var bbox = (process.argv.length > 4)
+  ? process.argv.slice(4).map(Number)
   : null
 
 var options = [{
@@ -25,4 +25,4 @@ options.forEach(function (opts) {
   if (bbox) { opts.bbox = bbox }
 })
 
-vtGrid(output, path.join(__dirname, '../data/planet.mbtiles'), options)
+vtGrid(output, process.argv[2], options)
